@@ -1,2 +1,2 @@
-# django-testing
+# Django Testing
 Playing with django
