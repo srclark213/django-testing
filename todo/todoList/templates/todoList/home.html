@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Todo List</title>
+        
+        {% load static %}
+
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <!-- JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+        <script src="{% static 'todoList/js/app.js' %}"></script>
+        <script src="{% static 'todoList/js/list.controller.js' %}"></script>
+    </head>
+    {% verbatim %}
+    <body ng-app="app">
+        <br/>
+        <div class="container" ng-controller="listController as vm">
+            <ol class="breadcrumb">
+                <li class="active">Home</li>
+            </ol>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>Todo List</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item" ng-repeat="list in vm.lists" ng-click="vm.loadList(list.pk)">{{list.fields.title}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    {% endverbatim %}
+</html>
