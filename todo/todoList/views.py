@@ -6,7 +6,7 @@ from .models import List
 
 # Create your views here.
 def index(request):
-    return render(request, 'todoList/home.html')
+    return render(request, 'todoList/index.html')
 
 def oneList(request, list_id):
     data = serializers.serialize('json', [List.objects.get(pk=list_id),])

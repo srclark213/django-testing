@@ -2,31 +2,23 @@
     'use strict';
 
     var app = angular.module('app')
-        .controller('listController', listController);
+        .controller('ListController', ListController);
 
-    listController.$inject = ['$http'];
+    ListController.$inject = ['$http', '$stateParams'];
 
-    function listController($http) {
+    function ListController($http, $stateParams) {
         var vm = this;
-        vm.title = "List Controller";
+        vm.title = "ListController";
 
-        //variables
-        vm.lists = [];
-
-        //functions
-        vm.loadList = loadList;
+        vm.list = {};
 
         activate();
 
         function activate() {
-            $http.get('/lists/').then(function(results) {
-                vm.lists = results.data;
-            });
-        }
+            $http.get('lists/'+$stateParams.listId).then(function(results) {
+                vm.list = results.data[0];
 
-        function loadList(pk) {
-            $http.get('lists/'+pk).then(function(results) {
-                vm.list = results.data;
+                console.log(vm.list);
             })
         }
     }
