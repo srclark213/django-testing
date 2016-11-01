@@ -4,22 +4,27 @@
     var app = angular.module('app')
         .controller('ListController', ListController);
 
-    ListController.$inject = ['$http', '$stateParams'];
+    ListController.$inject = ['$http', '$stateParams', 'ListFactory', '$q'];
 
-    function ListController($http, $stateParams) {
+    function ListController($http, $stateParams,ListFactory, $q) {
         var vm = this;
         vm.title = "ListController";
 
+        //variables
         vm.list = {};
+        vm.items = [];
 
         activate();
 
         function activate() {
-            $http.get('lists/'+$stateParams.listId).then(function(results) {
-                vm.list = results.data[0];
+            var promises = [];
+            ListFactory.getList($stateParams.listId).then(function(data) {
+                vm.list = data[0];
+            });
 
-                console.log(vm.list);
-            })
+            ListFactory.getListItems($stateParams.listId).then(function(data) {
+                vm.items = data;
+            });
         }
     }
 })()
