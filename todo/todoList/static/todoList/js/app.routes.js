@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     angular.module('app')
-        .config(function($stateProvider) {
+        .config(function($stateProvider, $urlRouterProvider) {
             $stateProvider
                 .state('home', {
                     url: '/',
@@ -13,5 +13,7 @@
                     templateUrl: '/static/todoList/templates/list.html',
                     controller: 'ListController as vm'
                 });
+
+            $urlRouterProvider.otherwise('/');
         });
 })();

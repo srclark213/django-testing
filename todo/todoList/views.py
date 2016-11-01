@@ -8,14 +8,15 @@ from .models import List
 def index(request):
     return render(request, 'todoList/index.html')
 
-def allLists(request):
+# API Responses
+def todoLists(request):
     data = serializers.serialize('json', List.objects.all())
     return HttpResponse(data, content_type="application/json")
 
-def oneList(request, list_id):
+def todoList(request, list_id):
     data = serializers.serialize('json', [List.objects.get(pk=list_id),])
     return HttpResponse(data, content_type="application/json")
 
-def listItems(request, list_id):
+def todoListItems(request, list_id):
     data = serializers.serialize('json', List.objects.get(pk=list_id).listitem_set.all())
     return HttpResponse(data, content_type="application/json")

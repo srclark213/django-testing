@@ -23,7 +23,9 @@
         <br/>
         <div class="container" ng-controller="IndexController as vm">
             <ol class="breadcrumb">
-                <li class="active">Home</li>
+                <li ng-if="vm.state.current.name !== 'home'"><a href ui-sref="home">Home</a></li>
+                <li ng-if="vm.state.current.name === 'home'" class='active'>Home</li>
+                <li ng-if="vm.state.current.name === 'list'" class='active'>List</li>
             </ol>
 
             <ui-view></ui-view>

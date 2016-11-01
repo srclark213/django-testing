@@ -10,10 +10,14 @@
         var vm = this;
         vm.title = "IndexController";
 
+        vm.state = {};
+
         activate();
 
         function activate() {
-            console.log($state.get());
+            vm.state = $state;
+
+            console.log(vm.state);
         }
     }
 })()

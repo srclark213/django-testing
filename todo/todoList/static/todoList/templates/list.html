@@ -5,8 +5,12 @@
 
     <div class="panel-body">
         <div ng-repeat="item in vm.items | orderBy: fields.order">
-            <input type="checkbox" ng-model="item.fields.competion">
-            <span>{{item.fields.text}}</span>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="item.fields.competion">
+                    <span>{{item.fields.text}}</span>
+                </label>
+            </div>
         </div>
     </div>
 
